@@ -88,7 +88,8 @@ export class NftService {
     return this.web3Service.abi.methods.mint(address).send({ from: this.web3Service.getAccount() });
   }
 
-  totalSupply(): Promise<any> {
+  totalSupply(sc): Promise<any> {
+    this.web3Service.sc = sc;
     return this.web3Service.abi.methods.totalSupply().call();
   }
 }

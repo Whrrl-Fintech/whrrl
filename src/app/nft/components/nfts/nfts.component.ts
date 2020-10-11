@@ -31,6 +31,8 @@ export class NftsComponent implements OnInit {
   }
   ngOnInit() {
     this.user()
+    console.log('("################## sc',localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
+
   }
   user() {
     this.userAddress = localStorage.getItem("sc");
@@ -224,12 +226,12 @@ export class NftsComponent implements OnInit {
       // });
     });
 
-    this.nftService.totalSupply().then((totalSupply) => {
+    this.nftService.totalSupply(h.sc).then((totalSupply) => {
       this.totalSupply = totalSupply;
       if (this.totalSupply == 0) {
         this.mintStatus = true;
       }
-      console.log('totalSupply', totalSupply,this.mintStatus);
+      console.log('totalSupply', totalSupply, this.mintStatus);
     });
 
     this.userAddress = this.nftService.userAddress();

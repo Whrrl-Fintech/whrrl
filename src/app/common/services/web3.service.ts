@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
-import {environment} from '../../../environments/environment';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 declare let require: any;
 declare let ethereum: any;
@@ -18,6 +18,7 @@ export class Web3Service {
   public abi;
 
   public accountsObservable = new Subject<string[]>();
+  public sc: any;
 
   constructor() {
     this.bootstrapWeb3();
@@ -60,15 +61,14 @@ export class Web3Service {
     });
 
 
-    this.abi = this.artifactsToContract();
+    this.abi = this.artifactsToContract(this.sc);
   }
 
-  public artifactsToContract() {
+  public artifactsToContract(sc) {
     if (this.web3) {
-      const instance = new this.web3.eth.Contract(environment.ABI.abi, 
+      const instance = new this.web3.eth.Contract(environment.ABI.abi,
         // '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
-        localStorage.getItem("sc")?localStorage.getItem("sc"): '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9'
-        );
+        localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
       return instance;
     }
   }
@@ -78,9 +78,11 @@ export class Web3Service {
   }
 
 
-  public trasfer(receiver,sender,value) {
-    return this.web3.eth.sendTransaction({to:receiver, from:sender,
-       value:this.web3.utils.toWei(value, "ether")})
+  public trasfer(receiver, sender, value) {
+    return this.web3.eth.sendTransaction({
+      to: receiver, from: sender,
+      value: this.web3.utils.toWei(value, "ether")
+    })
 
   }
 
@@ -110,12 +112,12 @@ export class Web3Service {
         }
 
         if (!this.accounts || this.accounts.length !== accs.length || this.accounts[0] !== accs[0]) {
-          console.log('Observed new accounts',accs);
+          console.log('Observed new accounts', accs);
 
           this.accountsObservable.next(accs);
           this.accounts = accs;
-         localStorage.setItem("userAccount",this.accounts[0])
-          console.log('Observed new accounts',this.accounts);
+          localStorage.setItem("userAccount", this.accounts[0])
+          console.log('Observed new accounts', this.accounts);
         }
 
         this.ready = true;
