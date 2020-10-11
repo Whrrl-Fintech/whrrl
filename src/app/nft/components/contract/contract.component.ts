@@ -38,7 +38,7 @@ export class ContractComponent implements OnInit {
   }
   user() {
     this.userAddress = localStorage.getItem("sc");
-    // console.log("################## NFT #####", this.userAddress);
+    console.log("################## NFT #####", this.userAddress);
   }
   data: any = [
     {

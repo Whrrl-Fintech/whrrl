@@ -28,16 +28,18 @@
     <div class="column" *ngFor="let d of data">
       <div class="bordetyy">
         <img src="../assets/1.png" style="width: 240px;">
+        <p style="margin-bottom: 10px;">Eth : {{d.ethprice}}</p>
         <p style="margin-bottom: 0;">Commodity : {{d.commodity}}</p>
         <!-- <p style="margin-bottom: 0;">Variety : {{d.variety}}</p> -->
         <p style="margin-bottom: 0;">QTN : {{d.quantity}} KGs</p>
         <p style="margin-bottom: 10px;">Location : {{d.location}}</p>
+       
         <p class="lenddBtn" (click)="showWhrDetails(d)">LEND</p>
       </div>
     </div>
   </div>
   <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_borrow">
-    <div class="col-12">
+    <!-- <div class="col-12">
       <p style="font-size: 50px;
       line-height: 55px;
       color: #0089FF;
@@ -60,18 +62,19 @@
         cursor : pointer;margin: 0 auto;
         color: #689BEB;" (click)="lendddd()">LEND NOW</p>
       </div>
-    </div>
+    </div> -->
 
-    <!-- <div class="column" *ngFor="let d of data">
+    <div class="column" *ngFor="let d of data">
       <div class="bordetyy">
         <img src="../assets/1.png" style="width: 240px;">
+        <p style="margin-bottom: 10px;">Eth : {{d.ethprice}}</p>
         <p style="margin-bottom: 0;">Commodity : {{d.commodity}}</p>
         <p style="margin-bottom: 0;">QTN : {{d.quantity}} KGs</p>
         <p style="margin-bottom: 10px;">Location : {{d.location}}</p>
         <p class="borrowbtn" (click)="applyForLoan(d)">Apply For Loan</p>
 
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div class="modal fade" id="msg">
@@ -135,7 +138,9 @@
               <p>{{whrdd.interest}} ETH</p>
             </div>
           </div>
-          <p class="lendBtnInModal">LEND</p>
+          <p class="lendBtnInModal" *ngIf='!paused &&  0 ==loanAmount' (click)="sentEth()">LEND</p>
+          <p class="lendBtnInModal"  *ngIf='userAddress!=owner  && repaymentAmount >0' (click)="lenderWithdraw()">
+            REPAYMENT WITHDRAWAL</p>
         </div>
       </div>
     </div>
@@ -185,12 +190,12 @@
               <p>{{whrdd.charges}}</p>
             </div>
           </div>
-          <div class="row asssdU" style="display: flex;margin-top: 20px;">
+          <div class="row asssdU" style="display: flex;margin-top: 20px;" *ngIf='whrdd.loanAmount_ETH && whrdd.loanAmount_ETH && whrdd.loanAmount_ETH'>
             <div class="col-6">
               <p style="font-weight: 700;">You Receive</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p> ETH</p>
+              <p>{{stringToint(whrdd.loanAmount_ETH) - stringToint(whrdd.interest ) - stringToint(whrdd.charges)}}ETH</p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex">
@@ -198,10 +203,42 @@
               <p style="font-weight: 700;">You Repay In</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p> Months</p>
+              <p> {{whrdd.tenure}} Months</p>
             </div>
           </div>
-          <p class="borrowBtnInModal">BORROW</p>
+          <p class="borrowBtnInModal" (click)="mint(whrdd)">BORROW</p>
+          <p class="borrowBtnInModal" *ngIf='paused && userAddress==owner' (click)="borrowerWithdraw()">WITHDRAWAL</p>
+          <p class="borrowBtnInModal" *ngIf='paused && userAddress==owner  && 0!=loanAmount' (click)="repaymentEth()">
+            REPAYMENT</p>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="successLoan">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 50px;">
+          <img src="../assets/tick.png" style="width: 180px;
+          margin-bottom: 20px;">
+          <p>Transaction completed Successfully.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="lendingSuccess">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 50px;">
+          <img src="../assets/tick.png" style="width: 180px;
+          margin-bottom: 20px;">
+          <p>Transaction completed Successfully.</p>
+          <p style="text-align: left;
+          line-height: 21px;
+          font-size: 14px;
+          margin-top: 20px;">View the transactions<br><a href="{{tx}}" target="_blank">{{ linkToViewLending}}</a>
+          </p>
         </div>
       </div>
     </div>
