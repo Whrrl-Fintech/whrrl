@@ -26,6 +26,7 @@ export class ContractComponent implements OnInit {
   totalSupply: any;
   mintStatus: boolean = false;
   tx: any;
+  owner: any;
 
   constructor(private nftService: NftService,
     private snackBar: MatSnackBar, private web3Service: Web3Service) {
@@ -47,7 +48,7 @@ export class ContractComponent implements OnInit {
       "totalQtl": 3,
       "variety": "Normal",
       "location": "Maharastra, India",
-      "sc": "0x3aedb38812353c45c9996ddb37398f0a2fdd23d0"
+      "sc": "0xa22Edfc1eB95Be67A868E446b595D2F2FA51BF2B"
     }
   ]
 
@@ -56,6 +57,7 @@ export class ContractComponent implements OnInit {
     this.nftService.getWhrDetails().then((data) => {
       this.whr = data;
       this.whr['picture'] = h.picture;
+      this.whr['sc'] = h.sc;
       this.whr['commodity'] = h.commodity;
       console.log(data);
       // this.balanceOf=balanceOf;
@@ -136,6 +138,11 @@ export class ContractComponent implements OnInit {
     });
     this.userAddress = this.nftService.userAddress();
     console.log(this.userAddress);
+
+    this.nftService.owner().then((data) => {
+      this.owner = data;
+      console.log('owner', this.owner);
+    });
   }
 
   // alld() { 

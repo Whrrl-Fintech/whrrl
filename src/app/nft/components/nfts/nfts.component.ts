@@ -46,9 +46,9 @@ export class NftsComponent implements OnInit {
       "commodity": "Wheat",
       "picture": "../../../../assets/images/Wheat.jpg",
       "totalQtl": 3,
-      "variety": "Normal",
+      "variety": "Normal 2",
       "location": "Maharastra, India",
-      "sc": "0x3aedb38812353c45c9996ddb37398f0a2fdd23d0"
+      "sc": "0xa22Edfc1eB95Be67A868E446b595D2F2FA51BF2B"
     },
     {
       "id": 1,
@@ -261,7 +261,7 @@ export class NftsComponent implements OnInit {
       this.paused = data;
       $('#seccessmsg').modal('show');
       console.log('data', data);
-      this.tx = data["transactionHash"];
+      this.tx = "Transactiondata " + data["transactionHash"] + "completed successfully.. ";
       // this.snackBar.open('You review has been sent', '', {
       //   duration: 2000,
       // });
@@ -274,7 +274,7 @@ export class NftsComponent implements OnInit {
       this.paused = data;
       $('#seccessmsg').modal('show');
       console.log('data', data);
-      this.tx = data["transactionHash"];
+      this.tx = "Transactiondata " + data["transactionHash"] + "completed successfully.. ";
       // this.snackBar.open('You review has been sent', '', {
       //   duration: 2000,
       // });
@@ -319,7 +319,7 @@ export class NftsComponent implements OnInit {
         this.paused = data;
         $('#seccessmsg').modal('show');
         console.log('data', data);
-        this.tx = data["transactionHash"];
+        this.tx = "Transactiondata " + data["transactionHash"] + "completed successfully.. ";
         // this.snackBar.open('You review has been sent', '', {
         //   duration: 2000,
         // });
@@ -331,7 +331,7 @@ export class NftsComponent implements OnInit {
       this.nftService.mint(data).then((data) => {
         $('#seccessmsg').modal('show');
         console.log('data', data);
-        this.tx = data["transactionHash"];
+        this.tx = "Transactiondata " + data["transactionHash"] + "completed successfully.. ";
       });
     });
   }

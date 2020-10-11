@@ -18,7 +18,7 @@
           margin: 7px;
           border-color: #8653f7;
           background-color: #8653f7;
-          border-radius: 33px;" class="btn btn-success mr-2" (click)="mint(h)">Apply for
+          border-radius: 33px;" class="btn btn-success mr-2" (click)="showWhrDetails(h)">Apply for
             loan</button>
         </div>
       </div>
@@ -60,7 +60,7 @@
                 margin: 7px;
                 border-color: #8653f7;
                 background-color: #8653f7;
-                border-radius: 33px;" class="btn btn-success mr-2" (click)="mint()" *ngIf='mintStatus'>Apply for
+                border-radius: 33px;" class="btn btn-success mr-2" (click)="mint(whr)" *ngIf='mintStatus  && userAddress == owner '>Apply for
                   loan</button>
 
               </div>
