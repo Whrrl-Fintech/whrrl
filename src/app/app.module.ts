@@ -22,7 +22,7 @@ const appRoutes: Routes = [{
 { path: 'my-loans', component: MyloansComponent },
 { path: 'how-it-works', component: HowitworksComponent },
 { path: 'marketplace', component: MarketplaceComponent },
-{ path: '**', component: HomeComponent },  // Wildcard route for a 404 page
+{ path: '**', component: HomeComponent }
 ];
 
 // import {
@@ -44,6 +44,7 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
 import { HomeComponent } from './home/home.component';
 import { MyloansComponent } from './myloans/myloans.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { dataService } from './services/data.service';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
   ],
   providers: [
     Web3Service,
+    dataService
   ],
   bootstrap: [AppComponent]
 })

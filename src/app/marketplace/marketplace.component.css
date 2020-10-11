@@ -67,6 +67,7 @@
   width: 52%;
   font-size: 14px;
   text-align: left;
+  margin-top: 13px;
 }
 
 
@@ -173,7 +174,7 @@ input:checked+.slider:before {
   margin: 0 auto;
   background-color: #FEDBBD;
   color: #C48150 !important;
-  padding: 9px 56px;
+  padding: 17px 99px;
   border-radius: 10px;
   word-spacing: 1px;
   letter-spacing: 1px;
@@ -186,7 +187,7 @@ input:checked+.slider:before {
   margin: 0 auto;
   background-color: #E2F0FE;
   color: #689BEB !important;
-  padding: 9px 56px;
+  padding: 17px 99px;
   border-radius: 10px;
   word-spacing: 1px;
   letter-spacing: 1px;
