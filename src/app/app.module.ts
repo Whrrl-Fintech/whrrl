@@ -18,11 +18,11 @@ const appRoutes: Routes = [{
   component: ContractComponent,
   data: { title: 'Contract' }
 },
-{
-  path: 'marketplace',
-  component: MarketplaceComponent,
-  data: { title: 'Contract' }
-}
+{ path: 'home', component: HomeComponent },
+{ path: 'my-loans', component: MyloansComponent },
+{ path: 'how-it-works', component: HowitworksComponent },
+{ path: 'marketplace', component: MarketplaceComponent },
+{ path: '**', component: HomeComponent },  // Wildcard route for a 404 page
 ];
 
 // import {

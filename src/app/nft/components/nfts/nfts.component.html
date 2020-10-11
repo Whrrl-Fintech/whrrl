@@ -70,7 +70,8 @@
                     margin: 7px;
                     border-color: #8653f7;
                     background-color: #8653f7;
-                    border-radius: 33px;" class="btn btn-success mr-2" (click)="sentEth()" *ngIf='!paused' >Lend</button>
+                    border-radius: 33px;" class="btn btn-success mr-2" (click)="sentEth()"
+                  *ngIf='!paused &&  0 ==loanAmount  '>Lend</button>
 
                 <button type="button" style="width: 29%;
 padding: 9px;
@@ -78,7 +79,8 @@ color: white;
 margin: 7px;
 border-color: #8653f7;
 background-color: #8653f7;
-border-radius: 33px;" class="btn btn-success mr-2" (click)="repaymentEth()"  *ngIf='paused' >Repayment </button>
+border-radius: 33px;" class="btn btn-success mr-2" (click)="repaymentEth()"
+                  *ngIf='paused && userAddress==owner  && 0!=loanAmount '>Repayment </button>
 
 
                 <button type="button" style="width: 29%;
@@ -87,7 +89,8 @@ border-radius: 33px;" class="btn btn-success mr-2" (click)="repaymentEth()"  *ng
         margin: 7px;
         border-color: #8653f7;
         background-color: #8653f7;
-        border-radius: 33px;" class="btn btn-success mr-2" (click)="borrowerWithdraw()"  *ngIf='paused && userAddress==owner' >Withdraw</button>
+        border-radius: 33px;" class="btn btn-success mr-2" (click)="borrowerWithdraw()"
+                  *ngIf='paused && userAddress==owner'>Withdraw</button>
 
                 <button type="button" style="width: 29%;
 padding: 9px;
@@ -95,7 +98,8 @@ color: white;
 margin: 7px;
 border-color: #8653f7;
 background-color: #8653f7;
-border-radius: 33px;" class="btn btn-success mr-2 " (click)="lenderWithdraw()" *ngIf= 'userAddress!=owner  && repaymentAmount >0' >Repayment Withdraw</button>
+border-radius: 33px;" class="btn btn-success mr-2 " (click)="lenderWithdraw()"
+                  *ngIf='userAddress!=owner  && repaymentAmount >0'>Repayment Withdraw</button>
 
 
 

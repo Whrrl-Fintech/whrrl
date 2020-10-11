@@ -8,9 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class RPCService {
 
-  constructor() { 
-    
-  }
+  constructor() { }
 
   rpc(methodName: string, parameterValue: string): Observable<any> | Promise<any> | any {
     const ABI = environment.ABI;
