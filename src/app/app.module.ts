@@ -17,16 +17,21 @@ const appRoutes: Routes = [{
   path: 'sc',
   component: ContractComponent,
   data: { title: 'Contract' }
-}
+},
+{ path: 'home', component: HomeComponent },
+{ path: 'my-loans', component: MyloansComponent },
+{ path: 'how-it-works', component: HowitworksComponent },
+{ path: 'marketplace', component: MarketplaceComponent },
+{ path: '**', component: HomeComponent },  // Wildcard route for a 404 page
 ];
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule
-} from '@angular/material';
+// import {
+//   MatButtonModule,
+//   MatCardModule,
+//   MatFormFieldModule,
+//   MatInputModule,
+//   MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule
+// } from '@angular/material';
 import { NftModule } from './nft/nft.module';
 import { NavComponent } from './common/components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -34,12 +39,22 @@ import { UtilModule } from './common/services/util.module';
 import { Web3Service } from './common/services/web3.service';
 import { NftsComponent } from './nft/components/nfts/nfts.component';
 import { ContractComponent } from './nft/components/contract/contract.component';
+import { HeaderComponent } from './header/header.component';
+import { HowitworksComponent } from './howitworks/howitworks.component';
+import { HomeComponent } from './home/home.component';
+import { MyloansComponent } from './myloans/myloans.component';
+import { MarketplaceComponent } from './marketplace/marketplace.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    HeaderComponent,
+    HowitworksComponent,
+    HomeComponent,
+    MyloansComponent,
+    MarketplaceComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -48,19 +63,19 @@ import { ContractComponent } from './nft/components/contract/contract.component'
     ),
     BrowserAnimationsModule,
     CommonModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatToolbarModule,
+    // MatButtonModule,
+    // MatCardModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatToolbarModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     NftModule,
     LayoutModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
+    // MatSidenavModule,
+    // MatIconModule,
+    // MatListModule,
     UtilModule
   ],
   providers: [

@@ -1,0 +1,176 @@
+<app-header></app-header>
+<div id="overlay" (click)="off()">
+  <div id="text">
+    <a class="asdhaishgda" (click)="borrow()" style="margin-right: 23%;
+    margin-left: -19%;">BORROW</a>
+    <a class="asdsadYY2" (click)="slend()">LEND</a>
+  </div>
+</div>
+
+
+<div style="text-align: center;">
+  <!-- <input [checked]="test" type="checkbox"> -->
+  <p style="padding: 10px;
+  text-align: right;
+  margin-right: 4%;
+  margin-top: 1%;
+  line-height: 32px;
+  word-spacing: 8px;">Borrow
+    <label class="switch">
+      <input type="checkbox" [ngModel]="test" name="type" checked (change)="checkClicked(test)">
+      <span class="slider round"></span>
+    </label>
+    Lend
+  </p>
+
+
+  <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_lend">
+    <div class="column" *ngFor="let d of data">
+      <div class="bordetyy">
+        <img src="../assets/1.png" style="width: 240px;">
+        <p>{{d.name}}</p>
+        <p class="lenddBtn" (click)="lend(d)">LEND</p>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_borrow">
+    <div class="column" *ngFor="let d of data">
+      <div class="bordetyy">
+        <img src="../assets/1.png" style="width: 240px;">
+        <p>{{d.name}}</p>
+        <p class="borrowbtn" (click)="applyForLoan(d)">Apply For Loan</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="lend">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 29px;">
+          <p class="maintitle">
+            LEND
+            <img src="../assets/2.png" class="asdsdjkh">
+          </p>
+          <p class="asdjhsadhU">You are lending ETH against <span class="makeBold">12.400 KGs</span> of commodity <span
+              class="makeBold">WHEAT</span>
+            stored in a warehouse in
+            <span class="makeBold">Washim, Maharashtra, India</span></p>
+          <div class="row asssdU" style="display: flex;margin-top: 28px;">
+            <div class="col-6">
+              <p style="font-weight: 700;">Commodity Value</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>3.65 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Requested Loan Amount</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.55 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Interest Applicable (@2.25%)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>0.06 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Platform Fee (@1%)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>0.02 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex;margin-top: 20px;">
+            <div class="col-6">
+              <p style="font-weight: 700;">You Pay</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.55 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">You Get (on repayment)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.61 ETH</p>
+            </div>
+          </div>
+          <p class="lendBtnInModal">LEND</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="borrow">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 29px;">
+          <p class="maintitle">
+            BORROW
+            <img src="../assets/2.png" class="asdsdjkh">
+          </p>
+          <p class="asdjhsadhU">You are lending ETH against <span class="makeBold">12.400 KGs</span> of commodity <span
+              class="makeBold">WHEAT</span>
+            stored in a warehouse in
+            <span class="makeBold">Washim, Maharashtra, India</span></p>
+          <div class="row asssdU" style="display: flex;margin-top: 28px;">
+            <div class="col-6">
+              <p style="font-weight: 700;">Commodity Value</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>3.65 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Requested Loan Amount</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.55 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Interest Applicable (@2.25%)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>0.06 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">Platform Fee (@1%)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>0.02 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex;margin-top: 20px;">
+            <div class="col-6">
+              <p style="font-weight: 700;">You Pay</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.55 ETH</p>
+            </div>
+          </div>
+          <div class="row asssdU" style="display: flex">
+            <div class="col-6">
+              <p style="font-weight: 700;">You Get (on repayment)</p>
+            </div>
+            <div class="col-6" style="text-align: left;">
+              <p>2.61 ETH</p>
+            </div>
+          </div>
+          <p class="borrowBtnInModal">BORROW</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
