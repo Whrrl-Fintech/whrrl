@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3 col-md-4 col-lg-3" *ngFor="let h of data">
-      <div class="panel panel-default panel-pet" *ngIf="mintShatusCheck(h)">
+      <div class="panel panel-default panel-pet">
         <div class="panel-heading">
           <h3 class="panel-title">{{h.commodity}}</h3>
         </div>
@@ -18,7 +18,7 @@
           margin: 7px;
           border-color: #8653f7;
           background-color: #8653f7;
-          border-radius: 33px;" class="btn btn-success mr-2" (click)="mint()" *ngIf='mintStatus'>Apply for
+          border-radius: 33px;" class="btn btn-success mr-2" (click)="mint()">Apply for
             loan</button>
         </div>
       </div>
