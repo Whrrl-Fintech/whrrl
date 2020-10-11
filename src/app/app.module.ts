@@ -32,7 +32,6 @@ import { NavComponent } from './common/components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UtilModule } from './common/services/util.module';
 import { Web3Service } from './common/services/web3.service';
-import { PureRpcResolverService } from './common/services/pure-rpc-resolver.service';
 import { NftsComponent } from './nft/components/nfts/nfts.component';
 import { ContractComponent } from './nft/components/contract/contract.component';
 

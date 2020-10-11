@@ -23,6 +23,8 @@ export class NftsComponent implements OnInit {
   lenderAddress: any;
   // web3Service: any;
   userAddress: any;
+  totalSupply: any;
+  mintStatus: boolean = false;
 
   constructor(private nftService: NftService,
     private snackBar: MatSnackBar, private web3Service: Web3Service) {
@@ -42,7 +44,7 @@ export class NftsComponent implements OnInit {
       "totalQtl": 3,
       "variety": "Normal",
       "location": "Maharastra, India",
-      "sc": "0xca48bfea13505472bacd1d6fdf237a28de939b4d"
+      "sc": "0xdc354eC79056E0b8e5c4e91C0352f6881C5a6e89"
     },
     {
       "id": 1,
@@ -222,6 +224,13 @@ export class NftsComponent implements OnInit {
       // });
     });
 
+    this.nftService.totalSupply().then((totalSupply) => {
+      this.totalSupply = totalSupply;
+      if (this.totalSupply == 0) {
+        this.mintStatus = true;
+      }
+      console.log('totalSupply', totalSupply,this.mintStatus);
+    });
 
     this.userAddress = this.nftService.userAddress();
     console.log(this.userAddress);
@@ -255,15 +264,17 @@ export class NftsComponent implements OnInit {
       //   duration: 2000,
       // });
     });
+
+
   }
 
 
   sentEth() {
     let sc = localStorage.getItem("sc")
-    console.log(sc, this.userAddress, '1');
+    console.log(sc, this.userAddress, (this.whr.ethprice * (70 / 100)).toString());
 
     this.nftService.transfer(sc, this.userAddress
-      , this.whr.ethprice/(70/100)).then((data) => {
+      , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
         // this.snackBar.open('You review has been sent', '', {
@@ -275,9 +286,9 @@ export class NftsComponent implements OnInit {
 
   repaymentEth() {
     let sc = localStorage.getItem("sc")
-    console.log(sc, this.userAddress, '1');
+    console.log(sc, this.userAddress, (this.whr.ethprice * (70 / 100)).toString());
     this.nftService.transfer(sc, this.userAddress
-      , this.whr.ethprice/(70/100)).then((data) => {
+      , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
         // this.snackBar.open('You review has been sent', '', {
@@ -287,15 +298,14 @@ export class NftsComponent implements OnInit {
   }
 
   mint() {
-    let sc = localStorage.getItem("sc")
-    console.log(sc, this.userAddress, '1');
-    this.nftService.transfer(sc, this.userAddress
-      , this.whr.ethprice/(70/100)).then((data) => {
-        // this.whr=data;
-        this.paused = data;
-        // this.snackBar.open('You review has been sent', '', {
-        //   duration: 2000,
-        // });
+    this.nftService.owner().then((data) => {
+      this.nftService.mint(data).then((data) => {
+        this.snackBar.open('New Token created', '', {
+          duration: 2000,
+        });
       });
+    });
   }
+
+
 }

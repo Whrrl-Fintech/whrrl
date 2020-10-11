@@ -25,7 +25,7 @@ export class NftService {
     return this.web3Service.abi.methods.feeDepositor().call();
   }
 
-  
+
 
   lenderAddress(): Promise<any> {
     return this.web3Service.abi.methods.lenderAddress().call();
@@ -66,25 +66,29 @@ export class NftService {
   }
 
   borrowerWithdraw(): Promise<any> {
-    return this.web3Service.abi.methods.borrowerWithdraw().send({from: this.web3Service.getAccount()});
+    return this.web3Service.abi.methods.borrowerWithdraw().send({ from: this.web3Service.getAccount() });
   }
 
   lenderWithdraw(): Promise<any> {
     console.log('getAccount', this.web3Service.getAccount());
-    return this.web3Service.abi.methods.lenderWithdraw().send({from: this.web3Service.getAccount()});
+    return this.web3Service.abi.methods.lenderWithdraw().send({ from: this.web3Service.getAccount() });
   }
 
-  userAddress(): String{
+  userAddress(): String {
     console.log('getAccount', this.web3Service.getAccount());
-    return   this.web3Service.getAccount();
+    return this.web3Service.getAccount();
   }
 
 
-  transfer(to,from,value ): Promise<any> {
-    return this.web3Service.trasfer(to,from,value ).send({from: this.web3Service.getAccount()});
+  transfer(to, from, value): Promise<any> {
+    return this.web3Service.trasfer(to, from, value).send({ from: this.web3Service.getAccount() });
   }
 
-  mint(to,from,value ): Promise<any> {
-    return this.web3Service.trasfer(to,from,value ).send({from: this.web3Service.getAccount()});
+  mint(address): Promise<any> {
+    return this.web3Service.abi.methods.mint(address).send({ from: this.web3Service.getAccount() });
+  }
+
+  totalSupply(): Promise<any> {
+    return this.web3Service.abi.methods.totalSupply().call();
   }
 }

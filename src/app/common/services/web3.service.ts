@@ -66,8 +66,9 @@ export class Web3Service {
   public artifactsToContract() {
     if (this.web3) {
       const instance = new this.web3.eth.Contract(environment.ABI.abi, 
-        '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
-        //localStorage.getItem("sc"));
+        // '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
+        localStorage.getItem("sc")?localStorage.getItem("sc"): '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9'
+        );
       return instance;
     }
   }
