@@ -25,18 +25,19 @@ export class ContractComponent implements OnInit {
   userAddress: any;
   totalSupply: any;
   mintStatus: boolean = false;
+  tx: any;
 
   constructor(private nftService: NftService,
     private snackBar: MatSnackBar, private web3Service: Web3Service) {
   }
   ngOnInit() {
     this.user()
-    console.log('("################## sc', localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
-
+    // console.log('("################## sc', localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
+    // this.alld();
   }
   user() {
     this.userAddress = localStorage.getItem("sc");
-    console.log("################## NFT #####", this.userAddress);
+    // console.log("################## NFT #####", this.userAddress);
   }
   data: any = [
     {
@@ -48,7 +49,6 @@ export class ContractComponent implements OnInit {
       "location": "Maharastra, India",
       "sc": "0x3aedb38812353c45c9996ddb37398f0a2fdd23d0"
     }
-
   ]
 
   whrDetails(h) {
@@ -127,21 +127,124 @@ export class ContractComponent implements OnInit {
       // });
     });
 
-    this.nftService.totalSupply(h.sc).then((totalSupply) => {
+    this.nftService.totalSupply().then((totalSupply) => {
       this.totalSupply = totalSupply;
       if (this.totalSupply == 0) {
         this.mintStatus = true;
       }
       console.log('totalSupply', totalSupply, this.mintStatus);
     });
-
     this.userAddress = this.nftService.userAddress();
     console.log(this.userAddress);
-
   }
+
+  // alld() { 
+
+  //   for (var i = 0; i <= this.data.lenght; i++) {
+  //     this.whrAllDetails(this.data[i]);
+  //   }
+  // }
+
+  // whrAllDetails(h) {
+  //   console.log('asasas',h.sc);
+
+  //   this.nftService.getScAdd(h.sc).then((data) => {
+
+  //     this.nftService.getWhrDetails().then((data) => {
+  //       h['data'] = data;
+  //       h['picture'] = h.picture;
+  //       h['commodity'] = h.commodity;
+  //       console.log(data);
+  //       // this.balanceOf=balanceOf;
+  //       // this.snackBar.open('You review has been sent', '', {
+  //       //   duration: 2000,
+  //       // });
+  //     });
+
+  //     this.nftService.balanceOf().then((data) => {
+  //       // this.whr=data;
+  //       console.log(data);
+  //       h['balanceOf'] = data;
+  //       // this.snackBar.open('You review has been sent', '', {
+  //       //   duration: 2000,
+  //       // });
+  //     });
+
+
+  //     // this.nftService.totalCal().then((data) => {
+  //     //   // this.whr=data; 
+  //     //   console.log(data);
+
+  //     //   this.whr['totalCal'] = data / Math.pow(10, 18);
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+
+
+  //     // this.nftService.totalInt().then((data) => {
+  //     //   // this.whr=data;
+  //     //   this.whr['totalInt'] = data / Math.pow(10, 18);
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+  //     // this.nftService.paused().then((data) => {
+  //     //   // this.whr=data;
+  //     //   this.whr['paused'] = data;
+  //     //   console.log('paused', data);
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+
+  //     // this.nftService.lenderAddress().then((data) => {
+  //     //   // this.whr=data;
+  //     //   this.whr['lenderAddress'] = data;
+  //     //   console.log('feeDepositor', this.lenderAddress);
+  //     //   // this.feeDepositor = data;
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+
+  //     // this.nftService.repaymentAmount().then((data) => {
+  //     //   // this.whr=data;
+  //     //   this.whr['repaymentAmount'] = data / Math.pow(10, 18);
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+
+  //     // this.nftService.loanAmount().then((data) => {
+  //     //   // this.whr=data;
+  //     //   this.whr['loanAmount'] = data / Math.pow(10, 18);
+  //     //   // this.snackBar.open('You review has been sent', '', {
+  //     //   //   duration: 2000,
+  //     //   // });
+  //     // });
+
+  //     // this.nftService.totalSupply().then((totalSupply) => {
+  //     //   this.whr['totalSupply'] = totalSupply;
+  //     //   if (this.totalSupply == 0) {
+  //     //     this.whr['mintStatus'] = true;
+  //     //   }
+  //     //   console.log('totalSupply', totalSupply, this.mintStatus);
+  //     // });
+
+  //     // this.whr['userAddress'] = this.nftService.userAddress();
+
+  //   });
+
+
+  // }
+
+
+
   mintShatusCheck(h) {
-    console.log("mint h.sc",h.sc);
-    this.nftService.totalSupply(h.sc).then((totalSupply) => {
+    // console.log("mint h.sc",h.sc);
+    // localStorage.getItem("sc")
+    this.nftService.totalSupply().then((totalSupply) => {
       this.totalSupply = totalSupply;
       if (this.totalSupply == 0) {
         console.log("mint");
@@ -210,12 +313,17 @@ export class ContractComponent implements OnInit {
       });
   }
 
-  mint() {
+  mint(h) {
+
+    localStorage.setItem("sc", h.sc);
     this.nftService.owner().then((data) => {
       this.nftService.mint(data).then((data) => {
-        this.snackBar.open('New Token created', '', {
-          duration: 2000,
-        });
+        $('#seccessmsg').modal('show');
+        console.log('data', data);
+        this.tx = data["transactionHash"];
+        // this.snackBar.open('New Token created', '', {
+        //   duration: 2000,
+        // });
       });
     });
   }

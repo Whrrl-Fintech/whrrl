@@ -25,13 +25,15 @@ export class NftsComponent implements OnInit {
   userAddress: any;
   totalSupply: any;
   mintStatus: boolean = false;
+  tx: any;
+  owner: any;
 
   constructor(private nftService: NftService,
     private snackBar: MatSnackBar, private web3Service: Web3Service) {
   }
   ngOnInit() {
     this.user()
-    console.log('("################## sc',localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
+    console.log('("################## sc', localStorage.getItem("sc") ? localStorage.getItem("sc") : '0x57F801F99c1a53aa9f124aE3c6662Dec9B5ddCA9');
 
   }
   user() {
@@ -46,7 +48,7 @@ export class NftsComponent implements OnInit {
       "totalQtl": 3,
       "variety": "Normal",
       "location": "Maharastra, India",
-      "sc": "0xdc354eC79056E0b8e5c4e91C0352f6881C5a6e89"
+      "sc": "0x3aedb38812353c45c9996ddb37398f0a2fdd23d0"
     },
     {
       "id": 1,
@@ -226,12 +228,17 @@ export class NftsComponent implements OnInit {
       // });
     });
 
-    this.nftService.totalSupply(h.sc).then((totalSupply) => {
+    this.nftService.totalSupply().then((totalSupply) => {
       this.totalSupply = totalSupply;
       if (this.totalSupply == 0) {
         this.mintStatus = true;
       }
       console.log('totalSupply', totalSupply, this.mintStatus);
+    });
+
+    this.nftService.owner().then((data) => {
+      this.owner = data;
+      console.log('owner', this.owner);
     });
 
     this.userAddress = this.nftService.userAddress();
@@ -252,6 +259,9 @@ export class NftsComponent implements OnInit {
     this.nftService.borrowerWithdraw().then((data) => {
       // this.whr=data;
       this.paused = data;
+      $('#seccessmsg').modal('show');
+      console.log('data', data);
+      this.tx = data["transactionHash"];
       // this.snackBar.open('You review has been sent', '', {
       //   duration: 2000,
       // });
@@ -262,6 +272,9 @@ export class NftsComponent implements OnInit {
     this.nftService.lenderWithdraw().then((data) => {
       // this.whr=data;
       this.paused = data;
+      $('#seccessmsg').modal('show');
+      console.log('data', data);
+      this.tx = data["transactionHash"];
       // this.snackBar.open('You review has been sent', '', {
       //   duration: 2000,
       // });
@@ -279,10 +292,21 @@ export class NftsComponent implements OnInit {
       , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
+       
+        console.log('data', data);
+        this.tx = "Transactiondata " + data["transactionHash"] + "completed successfully.. ";
+        $('#seccessmsg').modal('show');
         // this.snackBar.open('You review has been sent', '', {
         //   duration: 2000,
         // });
-      });
+      }).catch(err =>{
+        this.tx = err.message
+        $('#seccessmsg').modal('show');
+      }
+
+        
+        // alert(err.message)
+        );
   }
 
 
@@ -293,6 +317,9 @@ export class NftsComponent implements OnInit {
       , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
+        $('#seccessmsg').modal('show');
+        console.log('data', data);
+        this.tx = data["transactionHash"];
         // this.snackBar.open('You review has been sent', '', {
         //   duration: 2000,
         // });
@@ -302,9 +329,9 @@ export class NftsComponent implements OnInit {
   mint() {
     this.nftService.owner().then((data) => {
       this.nftService.mint(data).then((data) => {
-        this.snackBar.open('New Token created', '', {
-          duration: 2000,
-        });
+        $('#seccessmsg').modal('show');
+        console.log('data', data);
+        this.tx = data["transactionHash"];
       });
     });
   }

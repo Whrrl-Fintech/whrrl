@@ -87,7 +87,7 @@ border-radius: 33px;" class="btn btn-success mr-2" (click)="repaymentEth()"  *ng
         margin: 7px;
         border-color: #8653f7;
         background-color: #8653f7;
-        border-radius: 33px;" class="btn btn-success mr-2" (click)="borrowerWithdraw()"  *ngIf='paused' >Withdraw</button>
+        border-radius: 33px;" class="btn btn-success mr-2" (click)="borrowerWithdraw()"  *ngIf='paused && userAddress==owner' >Withdraw</button>
 
                 <button type="button" style="width: 29%;
 padding: 9px;
@@ -95,7 +95,7 @@ color: white;
 margin: 7px;
 border-color: #8653f7;
 background-color: #8653f7;
-border-radius: 33px;" class="btn btn-success mr-2 " (click)="lenderWithdraw()"   >Repayment Withdraw</button>
+border-radius: 33px;" class="btn btn-success mr-2 " (click)="lenderWithdraw()" *ngIf= 'userAddress!=owner  && repaymentAmount >0' >Repayment Withdraw</button>
 
 
 
@@ -110,6 +110,35 @@ border-radius: 33px;" class="btn btn-success mr-2 " (click)="lenderWithdraw()"  
                 border-color: #8653f7;
                 background-color: #8653f7;
                 border-radius: 33px;" class="btn btn-success mr-2" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="seccessmsg">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body" style="
+              text-align: left;
+              padding: 34px;">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-default panel-pet">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{tx}}</h3>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <button type="button" style="width: 29%;
+                padding: 9px;
+                color: white;
+                margin: 7px;
+                border-color: #8653f7;
+                background-color: #8653f7;
+                border-radius: 33px;" class="btn btn-success mr-2" data-dismiss="modal">ok</button>
       </div>
     </div>
   </div>

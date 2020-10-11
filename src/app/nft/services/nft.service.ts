@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { retry } from 'rxjs/operators';
 import { Web3Service } from '../../common/services/web3.service';
 
 @Injectable({
@@ -8,6 +9,14 @@ export class NftService {
 
   constructor(private web3Service: Web3Service) {
   }
+
+
+  // getScAdd(sc): Promise<any> {
+  //   console.log('ssssssssss', sc);
+
+  //   this.web3Service.sc = sc;
+  //   return Promise.resolve(true);
+  // }
 
   getWhrDetails(): Promise<any> {
     return this.web3Service.abi.methods.whr().call();
@@ -88,8 +97,8 @@ export class NftService {
     return this.web3Service.abi.methods.mint(address).send({ from: this.web3Service.getAccount() });
   }
 
-  totalSupply(sc): Promise<any> {
-    this.web3Service.sc = sc;
+  totalSupply(): Promise<any> {
+    // this.web3Service.sc = sc;
     return this.web3Service.abi.methods.totalSupply().call();
   }
 }
