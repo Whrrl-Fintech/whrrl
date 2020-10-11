@@ -26,18 +26,28 @@
 
   <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_lend">
     <div class="column" *ngFor="let d of data">
-      <div class="bordetyy">
+      <div class="bordetyy" style="border: 1px solid #c1e1ff !important;">
         <img src="../assets/1.png" style="width: 240px;">
-        <p style="margin-bottom: 0;">Commodity : {{d.commodity}}</p>
-        <!-- <p style="margin-bottom: 0;">Variety : {{d.variety}}</p> -->
-        <p style="margin-bottom: 0;">QTN : {{d.quantity}} KGs</p>
-        <p style="margin-bottom: 10px;">Location : {{d.location}}</p>
+        <p style="margin-bottom: 0;
+        text-align: left;
+        padding-left: 24px;
+        font-weight: 600;">{{d.commodity}} <span style="float: right;
+    padding-right: 20px;color: grey;">{{d.quantity}} KGs</span> </p>
+        <p style="margin-bottom: 10px;
+        text-align: left;
+        padding-left: 24px;
+        line-height: 20px;
+        margin-top: 10px;
+        font-size: 13px;">Value <br>{{d.ethprice}} ETH (${{d.price}})</p>
+
+        <!-- <p style="margin-bottom: 10px;">Location : {{d.location}}</p> -->
+
         <p class="lenddBtn" (click)="showWhrDetails(d)">LEND</p>
       </div>
     </div>
   </div>
   <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_borrow">
-    <div class="col-12">
+    <!-- <div class="col-12">
       <p style="font-size: 50px;
       line-height: 55px;
       color: #0089FF;
@@ -60,18 +70,26 @@
         cursor : pointer;margin: 0 auto;
         color: #689BEB;" (click)="lendddd()">LEND NOW</p>
       </div>
-    </div>
+    </div> -->
 
-    <!-- <div class="column" *ngFor="let d of data">
-      <div class="bordetyy">
+    <div class="column" *ngFor="let d of data">
+      <div class="bordetyy" style="border: 1px solid #fdd2a8 !important;">
         <img src="../assets/1.png" style="width: 240px;">
-        <p style="margin-bottom: 0;">Commodity : {{d.commodity}}</p>
-        <p style="margin-bottom: 0;">QTN : {{d.quantity}} KGs</p>
-        <p style="margin-bottom: 10px;">Location : {{d.location}}</p>
+        <p style="margin-bottom: 0;
+        text-align: left;
+        padding-left: 24px;
+        font-weight: 600;">{{d.commodity}} <span style="float: right;
+    padding-right: 20px;color: grey;">{{d.quantity}} KGs</span> </p>
+        <p style="margin-bottom: 10px;
+        text-align: left;
+        padding-left: 24px;
+        line-height: 20px;
+        margin-top: 10px;
+        font-size: 13px;">Value <br>{{d.ethprice}} ETH (${{d.price}})</p>
         <p class="borrowbtn" (click)="applyForLoan(d)">Apply For Loan</p>
 
       </div>
-    </div> -->
+    </div>
   </div>
 
   <div class="modal fade" id="msg">
@@ -82,8 +100,7 @@
             LEND
             <img src="../assets/2.png" class="asdsdjkh">
           </p>
-          <p class="asdjhsadhU">You are lending ETH against <span class="makeBold">{{whrdd.quantity}}</span> of
-            commodity
+          <p class="asdjhsadhU">You are lending ETH against <span class="makeBold">{{whrdd.quantity}} KG</span> of
             <span class="makeBold">{{whrdd.commodity}}</span>
             stored in a warehouse in
             <span class="makeBold">{{whrdd.location}}</span></p>
@@ -97,7 +114,7 @@
           </div>
           <div class="row asssdU" style="display: flex">
             <div class="col-6">
-              <p style="font-weight: 700;">Requested Loan Amount</p>
+              <p style="font-weight: 700;">Eligible Loan Amount</p>
             </div>
             <div class="col-6" style="text-align: left;">
               <p>{{whrdd.loanamount_ETH}} ETH (${{whrdd.loanamount}})</p>
@@ -105,10 +122,10 @@
           </div>
           <div class="row asssdU" style="display: flex">
             <div class="col-6">
-              <p style="font-weight: 700;">Interest Applicable (@2.25%)</p>
+              <p style="font-weight: 700;">Interest Applicable (@0.025%)</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.interest}}</p>
+              <p>{{whrdd.interest}} ETH</p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex">
@@ -116,26 +133,28 @@
               <p style="font-weight: 700;">Platform Fee (@1%)</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.charges}}</p>
+              <p>{{whrdd.charges}} ETH</p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex;margin-top: 20px;">
             <div class="col-6">
-              <p style="font-weight: 700;">You Pay</p>
+              <p style="font-weight: 700;">Pay</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.loanamount}} ETH</p>
+              <p>{{whrdd.loanamount_ETH}} ETH</p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex">
             <div class="col-6">
-              <p style="font-weight: 700;">You Get (on repayment)</p>
+              <p style="font-weight: 700;">Get (on repayment)</p>
             </div>
             <div class="col-6" style="text-align: left;">
               <p>{{whrdd.interest}} ETH</p>
             </div>
           </div>
-          <p class="lendBtnInModal">LEND</p>
+          <p class="lendBtnInModal" *ngIf='!paused &&  0 ==loanAmount' (click)="sentEth()">LEND</p>
+          <p class="lendBtnInModal" *ngIf='userAddress!=owner  && repaymentAmount >0' (click)="lenderWithdraw()">
+            REPAYMENT WITHDRAWAL</p>
         </div>
       </div>
     </div>
@@ -148,8 +167,7 @@
             BORROW
             <img src="../assets/2.png" class="asdsdjkh">
           </p>
-          <p class="asdjhsadhU">You are borrowing ETH against <span class="makeBold">{{whrdd.quantity}}</span> of
-            commodity
+          <p class="asdjhsadhU">You are borrowing ETH against <span class="makeBold">{{whrdd.quantity}} KG</span> of
             <span class="makeBold">{{whrdd.commodity}}</span>
             stored in a warehouse in
             <span class="makeBold">{{whrdd.location}}</span></p>
@@ -171,10 +189,10 @@
           </div>
           <div class="row asssdU" style="display: flex">
             <div class="col-6">
-              <p style="font-weight: 700;">Interest Applicable (@2.25%)</p>
+              <p style="font-weight: 700;">Interest Applicable (@0.025%)</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.interest}}</p>
+              <p>{{whrdd.interest}} ETH</p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex">
@@ -182,26 +200,60 @@
               <p style="font-weight: 700;">Platform Fee (@1%)</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.charges}}</p>
+              <p>{{whrdd.charges}} ETH</p>
             </div>
           </div>
-          <div class="row asssdU" style="display: flex;margin-top: 20px;">
+          <div class="row asssdU" style="display: flex;margin-top: 20px;"
+            *ngIf='whrdd.loanamount_ETH && whrdd.interest && whrdd.charges'>
             <div class="col-6">
-              <p style="font-weight: 700;">You Receive</p>
+              <p style="font-weight: 700;">Receive</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p>{{whrdd.loanAmount_ETH - whrdd.interest - whrdd.charges}} ETH</p>
+              <p>{{stringToint(whrdd.loanamount_ETH) - stringToint(whrdd.interest ) - stringToint(whrdd.charges)}}ETH
+              </p>
             </div>
           </div>
           <div class="row asssdU" style="display: flex">
             <div class="col-6">
-              <p style="font-weight: 700;">You Repay In</p>
+              <p style="font-weight: 700;">Repayment Period</p>
             </div>
             <div class="col-6" style="text-align: left;">
-              <p> Months</p>
+              <p> {{whrdd.tenure}} Months</p>
             </div>
           </div>
-          <p class="borrowBtnInModal">BORROW</p>
+          <p class="borrowBtnInModal" (click)="mint(whrdd)">BORROW</p>
+          <p class="borrowBtnInModal" *ngIf='paused && userAddress==owner' (click)="borrowerWithdraw()">WITHDRAWAL</p>
+          <p class="borrowBtnInModal" *ngIf='paused && userAddress==owner  && 0!=loanAmount' (click)="repaymentEth()">
+            REPAYMENT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="successLoan">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 50px;">
+          <img src="../assets/tick.png" style="width: 180px;
+          margin-bottom: 20px;">
+          <p>Transaction completed Successfully.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="lendingSuccess">
+    <div class="modal-dialog" style="margin-top: 8%;">
+      <div class="modal-content" style="border-radius: 39px;">
+        <div class="modal-body asssdU" style="padding: 50px;">
+          <img src="../assets/tick.png" style="width: 180px;
+          margin-bottom: 20px;">
+          <p>Transaction completed Successfully.</p>
+          <p style="text-align: left;
+          line-height: 21px;
+          font-size: 14px;
+          margin-top: 20px;">View the transactions<br><a href="{{tx}}" target="_blank">{{ linkToViewLending}}</a>
+          </p>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ export class NftsComponent implements OnInit {
       "totalQtl": 3,
       "variety": "Normal 2",
       "location": "Maharastra, India",
-      "sc": "0xa22Edfc1eB95Be67A868E446b595D2F2FA51BF2B"
+      "sc": "0xCaf069A5C7C90546A66B96e2A17fbCe4Aea91cb8"
     },
     {
       "id": 1,
@@ -289,7 +289,7 @@ export class NftsComponent implements OnInit {
     console.log(sc, this.userAddress, (this.whr.ethprice * (70 / 100)).toString());
 
     this.nftService.transfer(sc, this.userAddress
-      , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
+      , ((this.whr.ethprice/100) * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
        
@@ -314,7 +314,7 @@ export class NftsComponent implements OnInit {
     let sc = localStorage.getItem("sc")
     console.log(sc, this.userAddress, (this.whr.ethprice * (70 / 100)).toString());
     this.nftService.transfer(sc, this.userAddress
-      , (this.whr.ethprice * (70 / 100)).toString()).then((data) => {
+      , ((this.whr.ethprice/100) * (70 / 100)).toString()).then((data) => {
         // this.whr=data;
         this.paused = data;
         $('#seccessmsg').modal('show');

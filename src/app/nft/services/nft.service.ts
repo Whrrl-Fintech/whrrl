@@ -11,13 +11,7 @@ export class NftService {
   }
 
 
-  // getScAdd(sc): Promise<any> {
-  //   console.log('ssssssssss', sc);
-
-  //   this.web3Service.sc = sc;
-  //   return Promise.resolve(true);
-  // }
-
+  
   getWhrDetails(): Promise<any> {
     return this.web3Service.abi.methods.whr().call();
   }

@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 // import * as $ from 'jquery'
 const appRoutes: Routes = [{
-  path: '',
+  path: 'nft',
   component: NftsComponent,
   data: { title: 'nft' }
 },
@@ -18,7 +18,7 @@ const appRoutes: Routes = [{
   component: ContractComponent,
   data: { title: 'Contract' }
 },
-{ path: 'home', component: HomeComponent },
+{ path: '', component: HomeComponent },
 { path: 'my-loans', component: MyloansComponent },
 { path: 'how-it-works', component: HowitworksComponent },
 { path: 'marketplace', component: MarketplaceComponent },

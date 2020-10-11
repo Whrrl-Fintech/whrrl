@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class dataService {
     baseURL = '';
     constructor(private http: HttpClient) {
-        this.baseURL = 'http://localhost:8002/'
+        this.baseURL = 'https://uat-backend.whrrl.in/'
     }
 
     nftData() {
