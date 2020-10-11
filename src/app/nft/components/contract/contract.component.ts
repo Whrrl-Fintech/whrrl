@@ -48,7 +48,7 @@ export class ContractComponent implements OnInit {
       "totalQtl": 3,
       "variety": "Normal",
       "location": "Maharastra, India",
-      "sc": "0xa22Edfc1eB95Be67A868E446b595D2F2FA51BF2B"
+      "sc": "0xCaf069A5C7C90546A66B96e2A17fbCe4Aea91cb8"
     }
   ]
 
