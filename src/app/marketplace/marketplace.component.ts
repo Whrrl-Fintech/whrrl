@@ -294,11 +294,19 @@ export class MarketplaceComponent implements OnInit {
     });
   }
 
-  stringToint(str) { 
+  stringToint(str) {
     // console.log(str);
-    
+
     let rr = str.replace(',', '')
     let n = Number(rr)
     return n;
+  }
+
+  getImageName(val) {
+    let tt = val.replace('/', '').trim();
+    let t = tt.replace(' ','')
+    console.log(t)
+    return t;
+
   }
 }
