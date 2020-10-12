@@ -2,8 +2,6 @@
 /.awcache
 /.vscode
 /.idea
-/dist
-/dist-ts
 /docz-dist
 /.docz
 /coverage
