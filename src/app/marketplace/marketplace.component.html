@@ -27,7 +27,7 @@
   <div class="row" style="margin: 40px;margin-top: 5px;" *ngIf="t_lend">
     <div class="column" *ngFor="let d of data">
       <div class="bordetyy" style="border: 1px solid #c1e1ff !important;">
-        <img src="../assets/1.png" style="width: 240px;">
+        <img src="../assets/nft/{{getImageName(d.commodity)}}.jpg" style="width: 240px;">
         <p style="margin-bottom: 0;
         text-align: left;
         padding-left: 24px;
@@ -99,7 +99,8 @@
         <div class="modal-body asssdU" style="padding: 29px;" *ngIf="whrdd">
           <p class="maintitle">
             LEND
-            <img src="../assets/2.png" class="asdsdjkh">
+            <img src="../assets/nft/{{getImageName(d.commodity)}}.jpg" class="asdsdjkh">
+            <!-- <img src="../assets/2.png" class="asdsdjkh"> -->
           </p>
           <p class="asdjhsadhU">You are lending ETH against <span class="makeBold">{{whrdd.quantity}} KG</span> of
             <span class="makeBold">{{whrdd.commodity}}</span>
@@ -166,7 +167,7 @@
         <div class="modal-body asssdU" style="padding: 29px;" *ngIf="whrdd">
           <p class="maintitle">
             BORROW
-            <img src="../assets/2.png" class="asdsdjkh">
+            <img src="../assets/nft/{{getImageName(d.commodity)}}.jpg" class="asdsdjkh">
           </p>
           <p class="asdjhsadhU">You are borrowing ETH against <span class="makeBold">{{whrdd.quantity}} KG</span> of
             <span class="makeBold">{{whrdd.commodity}}</span>
